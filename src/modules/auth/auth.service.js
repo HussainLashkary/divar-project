@@ -3,6 +3,7 @@ const userModel = require("./../user/user.model")
 const {randomInt} = require('crypto');
 const createHttpError = require("http-errors");
 const authMessage = require("./auth.message");
+const jwt = require("jsonwebtoken")
 class AuthService {
     #model;
     constructor(){
@@ -25,6 +26,7 @@ class AuthService {
         }
         user.otp = otp;
         await user.save();
+        console.log(otp, mobile)
         return user;
     }
     async checkOTP(mobile, code) {
@@ -34,13 +36,17 @@ class AuthService {
         if(user?.otp?.code !== code) throw new createHttpError.Unauthorized(authMessage.OtpCodeIsIncorrect);
         if(!user.verifiedMobile) {
             user.verifiedMobile = true;
-            await user.save();
         }
-        return user;
+        const accessToken = this.signToken({mobile, id: user._id})
+        user.accessToken = accessToken;
+        await user.save();
     }
     async checkExistByMobile(mobile) {
         const user = await this.#model.findOne({mobile});
         if(!user) throw new createHttpError.NotFound(authMessage.Notfound);
+    }
+    signToken(payload) {
+        return jwt.sign(payload, process.env.JWT_SECRET_KEY, {expiresIn: "1y"})
     }
 }
 

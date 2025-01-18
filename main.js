@@ -13,9 +13,9 @@ async function main() {
     const myEmitter = new EventEmitter();
     myEmitter.setMaxListeners(20);
     require('./src/config/mongoose.config');
-    app.use(mainRouter)
     app.use(express.json())
     app.use(express.urlencoded({extended: true}))
+    app.use(mainRouter)
     swaggerConfig(app)
     NotFoundHandler(app)
     AllExceptionHandler(app)
