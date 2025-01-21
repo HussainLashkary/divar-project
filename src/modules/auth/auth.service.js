@@ -26,7 +26,6 @@ class AuthService {
         }
         user.otp = otp;
         await user.save();
-        console.log(otp, mobile)
         return user;
     }
     async checkOTP(mobile, code) {
@@ -40,10 +39,12 @@ class AuthService {
         const accessToken = this.signToken({mobile, id: user._id})
         user.accessToken = accessToken;
         await user.save();
+        return accessToken;
     }
     async checkExistByMobile(mobile) {
         const user = await this.#model.findOne({mobile});
         if(!user) throw new createHttpError.NotFound(authMessage.Notfound);
+        return user;
     }
     signToken(payload) {
         return jwt.sign(payload, process.env.JWT_SECRET_KEY, {expiresIn: "1y"})

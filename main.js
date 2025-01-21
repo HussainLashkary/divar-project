@@ -4,7 +4,9 @@ const swaggerConfig = require('./src/config/swagger.config');
 const mainRouter = require('./app.routes');
 const NotFoundHandler = require('./src/common/not-found.handler');
 const AllExceptionHandler = require('./src/common/all-exception.handler');
+const cookieParser = require("cookie-parser")
 const EventEmitter = require('events');
+const crypto = require("crypto")
 dotenv.config();
 
 async function main() {
@@ -15,6 +17,7 @@ async function main() {
     require('./src/config/mongoose.config');
     app.use(express.json())
     app.use(express.urlencoded({extended: true}))
+    app.use(cookieParser(process.env.COOKIE_SECRET));
     app.use(mainRouter)
     swaggerConfig(app)
     NotFoundHandler(app)
