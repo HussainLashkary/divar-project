@@ -6,7 +6,8 @@ const NotFoundHandler = require('./src/common/not-found.handler');
 const AllExceptionHandler = require('./src/common/all-exception.handler');
 const cookieParser = require("cookie-parser")
 const EventEmitter = require('events');
-const crypto = require("crypto")
+const crypto = require("crypto");
+const expressEjsLayouts = require('express-ejs-layouts');
 dotenv.config();
 
 async function main() {
@@ -18,6 +19,10 @@ async function main() {
     app.use(express.json())
     app.use(express.urlencoded({extended: true}))
     app.use(cookieParser(process.env.COOKIE_SECRET));
+    app.use(express.static("public"));
+    app.use(expressEjsLayouts)
+    app.set("view engine", "ejs")
+    app.set("layout", "./layouts/panel/main.ejs")
     app.use(mainRouter)
     swaggerConfig(app)
     NotFoundHandler(app)
