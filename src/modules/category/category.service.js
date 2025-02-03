@@ -39,7 +39,7 @@ class CategoryService {
             categoryDto.parent = Types.ObjectId(categoryDto.parent);
         }
         if (categoryDto?.slug) {
-            categoryDto.slug = slugify(categoryDto.name);
+            categoryDto.slug = slugify(categoryDto.slug);
             await this.alreadyExistBySlug(categoryDto.slug);
         } else {
             categoryDto.slug = slugify(categoryDto.name);

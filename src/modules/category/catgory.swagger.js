@@ -12,7 +12,6 @@
  *             type: object
  *             required:
  *                 -   name
- *                 -   icon
  *             properties: 
  *                 name:
  *                     type: string

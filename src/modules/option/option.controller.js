@@ -23,8 +23,9 @@ class OptionController {
     async update(req, res, next) {
         try {
             const {title, key, guid, enum: list, type, category, required} = req.body;
-            const {id} = req.params;
-            await this.#service.update(id, {title, key, guid, enum: list, type, category, required});
+            const {_id} = req.params;
+            console.log(req.params)
+            await this.#service.update(_id, {title, key, guid, enum: list, type, category, required});
             return res.json({
                 message: OptionMessage.Updated
             })

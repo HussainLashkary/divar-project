@@ -2,7 +2,6 @@ const autoBind = require("auto-bind");
 const categoryService = require("./category.service");
 const HttpCodes = require("http-status-codes");
 const { CategoryMessage } = require("./category.messages");
-const { Types } = require("mongoose");
 
 class CategoryController {
     #service
