@@ -1,28 +1,30 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const swaggerConfig = require('./src/config/swagger.config');
-const mainRouter = require('./app.routes');
-const NotFoundHandler = require('./src/common/not-found.handler');
-const AllExceptionHandler = require('./src/common/all-exception.handler');
+const mainRouter = require('./src/app.routes');
+const NotFoundHandler = require('./src/common/exceptions/not-found.handler');
+const AllExceptionHandler = require('./src/common/exceptions/all-exception.handler');
 const cookieParser = require("cookie-parser")
-const EventEmitter = require('events');
-const crypto = require("crypto");
 const expressEjsLayouts = require('express-ejs-layouts');
+const moment = require('jalali-moment');
+const methodOverride = require("method-override")
 dotenv.config();
 
 async function main() {
     const app = express();
     const port = process.env.PORT;
-    const myEmitter = new EventEmitter();
-    myEmitter.setMaxListeners(20);
     require('./src/config/mongoose.config');
     app.use(express.json())
     app.use(express.urlencoded({extended: true}))
+    app.use(methodOverride('_method'))
     app.use(cookieParser(process.env.COOKIE_SECRET));
     app.use(express.static("public"));
     app.use(expressEjsLayouts)
     app.set("view engine", "ejs")
     app.set("layout", "./layouts/panel/main.ejs")
+    app.set("layout extractScripts", true);
+    app.set("layout extractStyle", true);
+    app.locals.moment = moment;
     app.use(mainRouter)
     swaggerConfig(app)
     NotFoundHandler(app)
@@ -31,5 +33,4 @@ async function main() {
         console.log(`serve on http://localhost:${port}`);
     })
 }
-
 main();
