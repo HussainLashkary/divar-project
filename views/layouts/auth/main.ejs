@@ -9,6 +9,10 @@
       type="image/png"
       href="/assets/images/logos/divar.svg" />
     <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link
+    href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css"
+    rel="stylesheet" 
+    />
   </head>
 
   <body>
@@ -21,8 +25,9 @@
       data-sidebartype="full"
       data-sidebar-position="fixed"
       data-header-position="fixed">
-      <%-body%>
+      <%- body %>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
     <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   </body>

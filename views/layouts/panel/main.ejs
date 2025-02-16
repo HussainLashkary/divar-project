@@ -45,30 +45,20 @@
     <script type="text/javascript" src="/dist/js/mapp.env.js"></script>
     <script type="text/javascript" src="/dist/js/mapp.min.js"></script>
     <script>
-      $(document).ready(function () {
-        const app = new Mapp({
-          element: "#map-element",
+      $(document).ready(function() {
+      var app = new Mapp({
+          element: '#map-element',
           presets: {
-            latlng: {
-              lat: 35,
-              lng: 51,
-            },
-            zoom: 6,
+              latlng: {
+                  lat: 0,
+                  lng: 0,
+              },
+              zoom: 6,
           },
-          apiKey:
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMzOTFkNmI2MWEzMTdkYTg3MzE2ODRmYzYxMjY1ZTE4ODcwODI4MjgyMmMwY2QxMzkwYWJlY2MzMzE2MmVlNTYyOWZjYjM2ZGUxYjZhNzNhIn0.eyJhdWQiOiIzMDg2MyIsImp0aSI6IjMzOTFkNmI2MWEzMTdkYTg3MzE2ODRmYzYxMjY1ZTE4ODcwODI4MjgyMmMwY2QxMzkwYWJlY2MzMzE2MmVlNTYyOWZjYjM2ZGUxYjZhNzNhIiwiaWF0IjoxNzM5MDk1OTA5LCJuYmYiOjE3MzkwOTU5MDksImV4cCI6MTc0MTE2OTUwOSwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.EuC-yMZGOji1_RSMvJGfb504fbEvaDxb5cLoFp0LZBNSp1L0Q8f70HI5G2OalFIfj_U01l7lB7ijQ97KNEevMGH0v06UMwmby3VNG1suxsi0ThOmV2uyNKBXdEMMzeZeaaEmxrooSqePBMFlu-xhH4sW2Bl2QSsn85tmWBzWlqvHARpuaQTvl8W8FtjaR23SSxX5kj3vCR0mxDHRtuoJJZdKRSChDX8Wetw2ljx60hjRPeGHCE2mfophs4KUB0CTLQvam1I-Y0y6jKMSh268Y11lWt8dbGSBDLcVoabic_X0jdmjvYzbuRNWvNSQm-sTeMg38zKR3UCbzt5Qs6G8AA",
-          gestureHandling: true,
-          gestureHandlingOptions: {
-            duration: 1200,
-            text: {
-              touch: "نقشه را با دو انگشت حرکت دهید",
-              scroll: "برای بزرگنمایی نقشه از ctrl + scroll  استفاده کنید",
-              scrollMac:
-                "برای بزرگنمایی نقشه از \u2318  + scroll  استفاده کنید",
-            },
-          },
-        });
-        app.addLayers();
+          apiKey: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMzOTFkNmI2MWEzMTdkYTg3MzE2ODRmYzYxMjY1ZTE4ODcwODI4MjgyMmMwY2QxMzkwYWJlY2MzMzE2MmVlNTYyOWZjYjM2ZGUxYjZhNzNhIn0.eyJhdWQiOiIzMDg2MyIsImp0aSI6IjMzOTFkNmI2MWEzMTdkYTg3MzE2ODRmYzYxMjY1ZTE4ODcwODI4MjgyMmMwY2QxMzkwYWJlY2MzMzE2MmVlNTYyOWZjYjM2ZGUxYjZhNzNhIiwiaWF0IjoxNzM5MDk1OTA5LCJuYmYiOjE3MzkwOTU5MDksImV4cCI6MTc0MTE2OTUwOSwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.EuC-yMZGOji1_RSMvJGfb504fbEvaDxb5cLoFp0LZBNSp1L0Q8f70HI5G2OalFIfj_U01l7lB7ijQ97KNEevMGH0v06UMwmby3VNG1suxsi0ThOmV2uyNKBXdEMMzeZeaaEmxrooSqePBMFlu-xhH4sW2Bl2QSsn85tmWBzWlqvHARpuaQTvl8W8FtjaR23SSxX5kj3vCR0mxDHRtuoJJZdKRSChDX8Wetw2ljx60hjRPeGHCE2mfophs4KUB0CTLQvam1I-Y0y6jKMSh268Y11lWt8dbGSBDLcVoabic_X0jdmjvYzbuRNWvNSQm-sTeMg38zKR3UCbzt5Qs6G8AA',
+          
+      });
+      app.addLayers()
         app.map.on("click", function (e) {
           app.addMarker({
             name: "advanced-marker",
@@ -83,7 +73,7 @@
           document.getElementById("lat").value = lat;
           document.getElementById("lng").value = lng;
         });
-      });
+    });
     </script>
     <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/sidebarmenu.js"></script>

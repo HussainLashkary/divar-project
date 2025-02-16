@@ -1,0 +1,33 @@
+<div
+  class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="d-flex align-items-center justify-content-center w-100">
+    <div class="row justify-content-center w-100">
+      <div class="col-md-6 col-lg-4 col-xxl-3">
+        <div class="card mb-0">
+          <div class="card-body">
+            <a
+            href="./index.html"
+            class="text-nowrap logo-img text-center d-block py-3 w-100">
+            <img src="/assets/images/logos/divar.svg" width="180" alt="" />
+          </a>
+          <%if(otp, mobile) {%>
+            <div class="row">
+              <p class="alert alert-info"><%=otp%></p>
+              <br>
+              <p class="alert alert-info"><%=mobile%></p>
+            </div>
+          <%}%>
+            <p class="text-center">ورود به حساب کاربری</p>
+            <form id="otpForm" action="/auth/verify-otp" method="POST">
+              <label for="otp">کد :</label>
+              <input class="form-control" type="text" id="otp" name="otp" required />
+              <label for="mobile">شماره :</label>
+              <input class="form-control" id="mobile" name="mobile" />
+              <button type="submit" id="verifyOtpButton" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">بررسی کد تایید</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
